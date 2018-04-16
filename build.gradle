@@ -14,12 +14,15 @@ version '1.0-SNAPSHOT'
 
 apply plugin: 'kotlin'
 
+sourceCompatibility = 1.8
+
 repositories {
     mavenCentral()
 }
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    compile group: 'io.reactivex.rxjava2', name: 'rxjava', version: '2.1.12'
 }
 
 compileKotlin {
