@@ -7,8 +7,8 @@ import lejos.robotics.Color
 
 class RxEV3ColorSensor(port: Port) {
 
-    private val colorId: Observable<ColorId>
-    private val color: Observable<Color>
+    var colorId: Observable<ColorId> private set
+    var color: Observable<Color> private set
 
     init {
         colorId = Observable.using(

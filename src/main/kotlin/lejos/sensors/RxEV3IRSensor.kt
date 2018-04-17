@@ -6,7 +6,7 @@ import lejos.hardware.sensor.EV3IRSensor
 
 class RxEV3IRSensor(port: Port) {
 
-    private val distance: Observable<Float>
+    var distance: Observable<Float> private set
 
     init {
         distance = Observable.using(
