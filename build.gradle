@@ -13,6 +13,7 @@ group 'com.angrynerds.ev3'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'kotlin'
+apply plugin: 'maven'
 
 sourceCompatibility = 1.8
 
