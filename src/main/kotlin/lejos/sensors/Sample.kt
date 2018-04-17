@@ -1,3 +1,3 @@
-package com.angrynerds.ev3.lejos.sensors
+package lejos.sensors
 
 internal class Sample(val values: FloatArray, val offset: Int)

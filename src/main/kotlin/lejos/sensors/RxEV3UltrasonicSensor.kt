@@ -1,17 +1,17 @@
-package com.angrynerds.ev3.lejos.sensors
+package lejos.sensors
 
 import io.reactivex.Observable
 import lejos.hardware.port.Port
-import lejos.hardware.sensor.EV3IRSensor
+import lejos.hardware.sensor.EV3UltrasonicSensor
 
-class RxEV3IRSensor(port: Port) {
+class RxEV3UltrasonicSensor(port: Port) {
 
     private val distance: Observable<Float>
 
     init {
         distance = Observable.using(
-                { EV3IRSensor(port) },
-                { sensor: EV3IRSensor -> Sampler(sensor.distanceMode).sample },
+                { EV3UltrasonicSensor(port) },
+                { sensor: EV3UltrasonicSensor -> Sampler(sensor.distanceMode).sample },
                 { it.close() })
                 .share()
                 .map { sample -> sample.values[sample.offset] }

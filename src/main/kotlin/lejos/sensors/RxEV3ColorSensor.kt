@@ -1,9 +1,8 @@
-package com.angrynerds.ev3.lejos.sensors
+package lejos.sensors
 
 import io.reactivex.Observable
 import lejos.hardware.port.Port
 import lejos.hardware.sensor.EV3ColorSensor
-import lejos.hardware.sensor.EV3IRSensor
 import lejos.robotics.Color
 
 class RxEV3ColorSensor(port: Port) {
@@ -26,10 +25,12 @@ class RxEV3ColorSensor(port: Port) {
                 { sensor: EV3ColorSensor -> Sampler(sensor.redMode).sample },
                 { it.close() })
                 .share()
-                .map { sample -> Color(
-                        Math.round(sample.values[sample.offset]),
-                        Math.round(sample.values[sample.offset + 1]),
-                        Math.round(sample.values[sample.offset + 2])) }
+                .map { sample ->
+                    Color(
+                            Math.round(sample.values[sample.offset]),
+                            Math.round(sample.values[sample.offset + 1]),
+                            Math.round(sample.values[sample.offset + 2]))
+                }
                 .distinctUntilChanged()
     }
 }

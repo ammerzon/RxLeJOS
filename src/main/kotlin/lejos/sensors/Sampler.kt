@@ -1,8 +1,7 @@
-package com.angrynerds.ev3.lejos.sensors
+package lejos.sensors
 
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers.newThread
-import lejos.hardware.sensor.SensorMode
 import lejos.robotics.SampleProvider
 import org.slf4j.LoggerFactory
 import java.lang.Thread.sleep

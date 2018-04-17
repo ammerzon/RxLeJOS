@@ -9,7 +9,7 @@ buildscript {
     }
 }
 
-group 'com.angrynerds.ev3'
+group 'com.github.ammerzon'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'kotlin'
@@ -44,6 +44,12 @@ task sourcesJar(type: Jar, dependsOn: classes) {
     from sourceSets.main.allSource
 }
 
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
 artifacts {
     archives sourcesJar
+    archives javadocJar
 }
