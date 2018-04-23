@@ -22,7 +22,7 @@ class RxEV3ColorSensor(port: Port) {
 
         color = Observable.using(
                 { EV3ColorSensor(port) },
-                { sensor: EV3ColorSensor -> Sampler(sensor.redMode).sample },
+                { sensor: EV3ColorSensor -> Sampler(sensor.rgbMode).sample },
                 { it.close() })
                 .share()
                 .map { sample ->
