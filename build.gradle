@@ -27,9 +27,6 @@ dependencies {
     compileOnly 'com.github.bdeneuter:lejos-ev3-api:0.9.1-beta'
     compile group: 'io.reactivex.rxjava2', name: 'rxjava', version: '2.1.12'
     compile group: 'io.reactivex.rxjava2', name: 'rxkotlin', version: '2.2.0'
-    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.10.0'
-    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.10.0'
-    compile group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: '2.11.0'
 }
 
 compileKotlin {

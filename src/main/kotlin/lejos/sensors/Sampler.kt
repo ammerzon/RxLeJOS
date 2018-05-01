@@ -3,12 +3,12 @@ package lejos.sensors
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers.newThread
 import lejos.robotics.SampleProvider
-import org.slf4j.LoggerFactory
 import java.lang.Thread.sleep
+import java.util.logging.Logger
 
 internal class Sampler(sampleProvider: SampleProvider) {
 
-    private val logger = LoggerFactory.getLogger(Sampler::class.java)
+    private val logger = Logger.getLogger(Sampler::class.simpleName)
     val sample: Observable<Sample>
 
     init {
