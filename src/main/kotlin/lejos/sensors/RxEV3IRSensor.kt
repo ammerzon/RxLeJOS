@@ -10,8 +10,7 @@ class RxEV3IRSensor {
     private var sensor: EV3IRSensor? = null
     var distance: Observable<Float> private set
 
-    constructor(port: Port, autoClose: Boolean = true)
-    {
+    constructor(port: Port, autoClose: Boolean = true) {
         this.port = port
         distance = Observable.using(
                 { EV3IRSensor(port) },
@@ -22,8 +21,7 @@ class RxEV3IRSensor {
                 .distinctUntilChanged()
     }
 
-    constructor(sensor: EV3IRSensor, autoClose: Boolean = true)
-    {
+    constructor(sensor: EV3IRSensor, autoClose: Boolean = true) {
         this.sensor = sensor
         distance = Observable.using(
                 { sensor },
