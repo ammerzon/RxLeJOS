@@ -29,7 +29,7 @@ enum class ColorId constructor(var id: Int) {
         }
     }
 
-    override fun toString(): String {
+    fun name(id: Int): String {
         when (id) {
             Color.BLACK -> {
                 return "BLACK"
@@ -56,5 +56,9 @@ enum class ColorId constructor(var id: Int) {
                 return "UNKNOWN COLOR"
             }
         }
+    }
+
+    override fun toString(): String {
+        return name(id)
     }
 }
