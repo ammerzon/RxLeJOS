@@ -16,7 +16,7 @@ class RxEV3ColorSensor {
         colorId = Observable.using(
                 { EV3ColorSensor(port) },
                 { sensor: EV3ColorSensor -> Sampler(sensor.colorIDMode).sample },
-                { it.close() })
+                { if (autoClose) it.close() })
                 .share()
                 .map { sample -> sample.values[sample.offset] }
                 .map { value -> ColorId.colorId(value) }
@@ -25,7 +25,7 @@ class RxEV3ColorSensor {
         color = Observable.using(
                 { EV3ColorSensor(port) },
                 { sensor: EV3ColorSensor -> Sampler(sensor.rgbMode).sample },
-                { it.close() })
+                { if (autoClose) it.close() })
                 .share()
                 .map { sample ->
                     Color(
@@ -41,7 +41,7 @@ class RxEV3ColorSensor {
         colorId = Observable.using(
                 { sensor },
                 { colorSensor: EV3ColorSensor -> Sampler(colorSensor.colorIDMode).sample },
-                { it.close() })
+                { if (autoClose) it.close() })
                 .share()
                 .map { sample -> sample.values[sample.offset] }
                 .map { value -> ColorId.colorId(value) }
@@ -50,7 +50,7 @@ class RxEV3ColorSensor {
         color = Observable.using(
                 { sensor },
                 { colorSensor: EV3ColorSensor -> Sampler(colorSensor.rgbMode).sample },
-                { it.close() })
+                { if (autoClose) it.close() })
                 .share()
                 .map { sample ->
                     Color(

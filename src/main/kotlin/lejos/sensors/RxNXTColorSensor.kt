@@ -16,7 +16,7 @@ class RxNXTColorSensor {
         colorId = Observable.using(
                 { NXTColorSensor(port) },
                 { sensor: NXTColorSensor -> Sampler(sensor.colorIDMode).sample },
-                { it.close() })
+                { if (autoClose) it.close() })
                 .share()
                 .map { sample -> sample.values[sample.offset] }
                 .map { value -> ColorId.colorId(value) }
@@ -25,7 +25,7 @@ class RxNXTColorSensor {
         color = Observable.using(
                 { NXTColorSensor(port) },
                 { sensor: NXTColorSensor -> Sampler(sensor.rgbMode).sample },
-                { it.close() })
+                { if (autoClose) it.close() })
                 .share()
                 .map { sample ->
                     Color(
@@ -41,7 +41,7 @@ class RxNXTColorSensor {
         colorId = Observable.using(
                 { sensor },
                 { colorSensor: NXTColorSensor -> Sampler(colorSensor.colorIDMode).sample },
-                { it.close() })
+                { if (autoClose) it.close() })
                 .share()
                 .map { sample -> sample.values[sample.offset] }
                 .map { value -> ColorId.colorId(value) }
@@ -50,7 +50,7 @@ class RxNXTColorSensor {
         color = Observable.using(
                 { sensor },
                 { colorSensor: NXTColorSensor -> Sampler(colorSensor.rgbMode).sample },
-                { it.close() })
+                { if (autoClose) it.close() })
                 .share()
                 .map { sample ->
                     Color(
