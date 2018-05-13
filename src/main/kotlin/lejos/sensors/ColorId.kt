@@ -27,33 +27,33 @@ enum class ColorId constructor(var id: Int) {
                     .findFirst()
                     .orElse(NONE)
         }
-    }
 
-    fun name(id: Int): String {
-        when (id) {
-            Color.BLACK -> {
-                return "BLACK"
-            }
-            Color.BLUE -> {
-                return "BLUE"
-            }
-            Color.GREEN -> {
-                return "GREEN"
-            }
-            Color.YELLOW -> {
-                return "YELLOW"
-            }
-            Color.RED -> {
-                return "RED"
-            }
-            Color.WHITE -> {
-                return "WHITE"
-            }
-            Color.BROWN -> {
-                return "BROWN"
-            }
-            else -> {
-                return "UNKNOWN COLOR"
+        fun name(id: Int): String {
+            when (id) {
+                Color.BLACK -> {
+                    return "BLACK"
+                }
+                Color.BLUE -> {
+                    return "BLUE"
+                }
+                Color.GREEN -> {
+                    return "GREEN"
+                }
+                Color.YELLOW -> {
+                    return "YELLOW"
+                }
+                Color.RED -> {
+                    return "RED"
+                }
+                Color.WHITE -> {
+                    return "WHITE"
+                }
+                Color.BROWN -> {
+                    return "BROWN"
+                }
+                else -> {
+                    return "UNKNOWN COLOR"
+                }
             }
         }
     }
