@@ -6,7 +6,6 @@ import lejos.hardware.sensor.EV3ColorSensor
 
 class RxEV3ColorSensor {
 
-    private var port: Port? = null
     private var sensor: EV3ColorSensor? = null
     var colorId: Observable<ColorId> private set
 
