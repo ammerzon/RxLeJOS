@@ -25,7 +25,7 @@ internal class Sampler(sampleProvider: SampleProvider) {
                 while (!emitter.isDisposed) {
                     sampleProvider.fetchSample(sample.values, sample.offset)
                     emitter.onNext(sample)
-                    sleep(200)
+                    sleep(100)
                 }
                 logger.info("Stop sampling")
             } catch (e: Exception) {
