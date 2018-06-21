@@ -1,4 +1,4 @@
-package lejos.sensors
+package com.angrynerds.ev3.lejos.robotics
 
 import lejos.robotics.Color
 

@@ -1,5 +1,6 @@
-package lejos.sensors
+package com.angrynerds.ev3.lejos.hardware.sensors
 
+import com.angrynerds.ev3.lejos.robotics.Sampler
 import io.reactivex.Observable
 import lejos.hardware.port.Port
 import lejos.hardware.sensor.EV3UltrasonicSensor
@@ -10,7 +11,7 @@ class RxEV3UltrasonicSensor {
     private var sensor: EV3UltrasonicSensor? = null
     var distance: Observable<Float> private set
 
-    constructor(port: Port, autoClose: Boolean = true) {
+    constructor(port: Port, autoClose: Boolean = true, distinctUntilChanged: Boolean = false) {
         this.port = port
         distance = Observable.using(
                 { EV3UltrasonicSensor(port) },
@@ -19,9 +20,13 @@ class RxEV3UltrasonicSensor {
                 .share()
                 .map { sample -> sample.values[sample.offset] }
                 .distinctUntilChanged()
+
+        if (distinctUntilChanged) {
+            distance = distance.distinctUntilChanged()
+        }
     }
 
-    constructor(sensor: EV3UltrasonicSensor, autoClose: Boolean = true) {
+    constructor(sensor: EV3UltrasonicSensor, autoClose: Boolean = true, distinctUntilChanged: Boolean = false) {
         this.sensor = sensor
         distance = Observable.using(
                 { sensor },
@@ -30,5 +35,9 @@ class RxEV3UltrasonicSensor {
                 .share()
                 .map { sample -> sample.values[sample.offset] }
                 .distinctUntilChanged()
+
+        if (distinctUntilChanged) {
+            distance = distance.distinctUntilChanged()
+        }
     }
 }

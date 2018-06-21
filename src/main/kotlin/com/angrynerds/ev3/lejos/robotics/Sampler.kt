@@ -1,4 +1,4 @@
-package lejos.sensors
+package com.angrynerds.ev3.lejos.robotics
 
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers.newThread
@@ -25,7 +25,7 @@ internal class Sampler(sampleProvider: SampleProvider) {
                 while (!emitter.isDisposed) {
                     sampleProvider.fetchSample(sample.values, sample.offset)
                     emitter.onNext(sample)
-                    sleep(100)
+                    sleep(50)
                 }
                 logger.info("Stop sampling")
             } catch (e: Exception) {

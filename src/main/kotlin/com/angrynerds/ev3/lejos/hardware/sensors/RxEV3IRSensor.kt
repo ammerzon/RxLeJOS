@@ -1,5 +1,6 @@
-package lejos.sensors
+package com.angrynerds.ev3.lejos.hardware.sensors
 
+import com.angrynerds.ev3.lejos.robotics.Sampler
 import io.reactivex.Observable
 import lejos.hardware.port.Port
 import lejos.hardware.sensor.EV3IRSensor
@@ -10,7 +11,7 @@ class RxEV3IRSensor {
     private var sensor: EV3IRSensor? = null
     var distance: Observable<Float> private set
 
-    constructor(port: Port, autoClose: Boolean = true) {
+    constructor(port: Port, autoClose: Boolean = true, distinctUntilChanged: Boolean = false) {
         this.port = port
         distance = Observable.using(
                 { EV3IRSensor(port) },
@@ -18,10 +19,13 @@ class RxEV3IRSensor {
                 { if (autoClose) it.close() })
                 .share()
                 .map { sample -> sample.values[sample.offset] }
-                .distinctUntilChanged()
+
+        if (distinctUntilChanged) {
+            distance = distance.distinctUntilChanged()
+        }
     }
 
-    constructor(sensor: EV3IRSensor, autoClose: Boolean = true) {
+    constructor(sensor: EV3IRSensor, autoClose: Boolean = true, distinctUntilChanged: Boolean = false) {
         this.sensor = sensor
         distance = Observable.using(
                 { sensor },
@@ -30,5 +34,9 @@ class RxEV3IRSensor {
                 .share()
                 .map { sample -> sample.values[sample.offset] }
                 .distinctUntilChanged()
+
+        if (distinctUntilChanged) {
+            distance = distance.distinctUntilChanged()
+        }
     }
 }
